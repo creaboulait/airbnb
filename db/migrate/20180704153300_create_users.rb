@@ -1,9 +1,11 @@
-
-class CreateClearanceUsers < ActiveRecord::Migration[5.2]
-  def self.up
+class CreateUsers < ActiveRecord::Migration[5.2]
+  
     create_table :users do |t|
       t.timestamps null: false
       t.string :email, null: false
+      t.string :name
+      t.string :gender
+      t.string :age
       t.string :encrypted_password, limit: 128, null: false
       t.string :confirmation_token, limit: 128
       t.string :remember_token, limit: 128, null: false
@@ -11,9 +13,7 @@ class CreateClearanceUsers < ActiveRecord::Migration[5.2]
 
     add_index :users, :email
     add_index :users, :remember_token
-  end
+  
 
-  def self.down
-    drop_table :users
-  end
+  
 end
