@@ -1,0 +1,21 @@
+<h3>List your property today!</h3> 
+
+<%= form_for @listing do |form| %>
+	<p>Property description:  <%= form.text_field :description, placeholder: "Say a few words about your property" %></p>
+	<p>Price per night:  <%= form.text_field :price, placeholder: "Price of renting your property per night" %></p>
+	<p>Property area:  <%= form.text_field :area, placeholder: "Area of your property" %></p>
+	<p>Property renting basis: <%= form.text_field :place_type, placeholder: "Entire Place/Private Room/Shared Room?" %></p>
+	<p>Max no. of guests per night:  <%= form.text_field :up_to_guests_num, placeholder: "Max number of guests per night" %></p>
+	<p>Property type:  <%= form.text_field :house_type, placeholder: "Property type: either a house/apartment/cabin etc" %></p>
+	<p>No. of bedrooms:  <%= form.text_field :bedrooms_num, placeholder: "Number of bedrooms in the property" %></p>
+	<p>No. of beds:  <%= form.text_field :beds_num, placeholder: "Number of beds in the property" %></p>
+	<p>No. of bathrooms:  <%= form.text_field :bathrooms_num, placeholder: "Number of bathrooms in the property" %></p>
+	<p>Property address:  <%= form.text_field :address, placeholder: "Your property's full address" %></p><br />
+	
+	<%= form.submit %>
+<% end %>
+
+
+    
+    
+    
