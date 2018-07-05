@@ -15,3 +15,4 @@ class Authentication < ApplicationRecord
   end
   
 end
+

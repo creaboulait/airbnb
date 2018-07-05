@@ -1,4 +1,16 @@
 <h2>Welcome to Airbnb</h2>
 
 <p>Start travelling or</p> 
-<p>Start hosting</p>
+<p><a href = 'listings/new' >Start hosting</a></p>
+
+<hr />
+
+<h2>Check out recent listings!</h2>
+
+<% Listing.all.each do |listing| %>
+<a href = 'listings/<%= listing.id %>' ><p>Listing #: <%= listing.id %></p>
+<p>Area: <%= listing.area %></p>
+<p>Description: <%= listing.description %></p>
+<p>Max guests: <%= listing.up_to_guests_num %></p></a><br />
+
+<% end %>
