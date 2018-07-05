@@ -39,8 +39,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # For easier user management
 gem 'clearance'
 
-# Securely configure Rails application
+# Protects keys
 gem 'figaro'
+
+# Allows user to sign up/in via Google account
+gem 'omniauth-google-oauth2'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
