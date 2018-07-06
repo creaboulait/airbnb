@@ -1,4 +1,31 @@
-<h3>Listing #: <%= @listing.id %></h3>
+<h2>Listing #: <%= @listing.id %></h2>
 <p>Area: <%= @listing.area %></p>
 <p>Description: <%= @listing.description %></p>
 <p>Max guests: <%= @listing.up_to_guests_num %></p>
+
+
+<!-- Set condition so that only the user can edit or delete their own listings -->
+<% if @listing.user_id == current_user.id %>
+	<h3>Had a recent property renovation? Able to accept more guests? Change in prices? Edit this listing.</h3>
+	<h4>Note: You cannot edit the area and address of property. Go to new listing to list a new property.</h4>
+	<%= form_for @listing do |form| %>
+		<p>Property description:  <%= form.text_field :description, placeholder: "Say a few words about your property" %></p>
+		<p>Price per night:  <%= form.text_field :price, placeholder: "Price of renting your property per night" %></p>
+		<p>Property renting basis: <%= form.text_field :place_type, placeholder: "Entire Place/Private Room/Shared Room?" %></p>
+		<p>Max no. of guests per night:  <%= form.text_field :up_to_guests_num, placeholder: "Max number of guests per night" %></p>
+		<p>No. of bedrooms:  <%= form.text_field :bedrooms_num, placeholder: "Number of bedrooms in the property" %></p>
+		<p>No. of beds:  <%= form.text_field :beds_num, placeholder: "Number of beds in the property" %></p>
+		<p>No. of bathrooms:  <%= form.text_field :bathrooms_num, placeholder: "Number of bathrooms in the property" %></p>
+	
+		<%= form.submit %>
+	<% end %>
+
+	<h4>No longer listing the property? Delete this listing.</h4>
+	
+	<%= link_to 'Delete', listing_path, 
+                             method: :delete, 
+                             data: { confirm: 'Are you sure?' } %>
+	
+<% end %>
+
+
