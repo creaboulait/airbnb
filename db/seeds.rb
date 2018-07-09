@@ -40,6 +40,10 @@ ActiveRecord::Base.transaction do
     listing['beds_num'] = rand(1..6)
     listing['bathrooms_num'] = rand(1..3)
     
+    listing['country'] = Faker::Address.country
+    listing['state'] = Faker::Address.state
+    listing['city'] = Faker::Address.city
+    listing['zipcode'] = Faker::Address.zip_code
     listing['address'] = Faker::Address.street_address
 
     listing['user_id'] = uids.sample

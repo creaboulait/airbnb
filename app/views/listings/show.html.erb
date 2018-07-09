@@ -1,7 +1,43 @@
-<h2>Listing #: <%= @listing.id %></h2>
-<p>Area: <%= @listing.area %></p>
-<p>Description: <%= @listing.description %></p>
+<!-- This runs if listing has been verified -->
+<% if @listing.verification == true %>
+	<h3>This listing has been VERIFIED.</h3>
+<% end %>
+<br />
+
+<h5>Listing ID #: <%= @listing.id %></h5>
+<h3>Area: <%= @listing.area %></h3>
+<p>Property description: <%= @listing.description %></p>
+<p>Price per night: <%= @listing.price %></p><br />
+
+<p>Property renting basis: <%= @listing.place_type %></p>
 <p>Max guests: <%= @listing.up_to_guests_num %></p>
+<p>No. of bedrooms: <%= @listing.bedrooms_num %></p>
+<p>No. of beds: <%= @listing.beds_num %></p>
+<p>No. of bathrooms: <%= @listing.bathrooms_num %></p>
+
+<p><strong>Images:</strong>
+
+<!-- <#%= form_for @listing, html: { multipart: true } do |f| %>
+  <p>
+    <#%= image_tag(@listing.galleries[0].url) if @listing.galleries? %>
+  </p>
+<#% end %> -->
+
+<% @listing.galleries.each do |gallery| %>
+<img src="<%= gallery %>">
+<% end %>
+
+
+
+<br />
+<!-- This runs if listing has not been verified & the current user is moderator/admin-->
+<% if (current_user.moderator? || current_user.admin?) && (@listing.verification == false || @listing.verification == nil) %>
+			<button><%= link_to 'Verify Listing', verify_path, 
+                             method: :patch, 
+                             data: { confirm: 'Are you sure you want to verify listing?' } %></button>
+<% end %>
+
+<hr />
 
 
 <!-- Set condition so that only the user can edit or delete their own listings -->
@@ -16,15 +52,16 @@
 		<p>No. of bedrooms:  <%= form.text_field :bedrooms_num, placeholder: "Number of bedrooms in the property" %></p>
 		<p>No. of beds:  <%= form.text_field :beds_num, placeholder: "Number of beds in the property" %></p>
 		<p>No. of bathrooms:  <%= form.text_field :bathrooms_num, placeholder: "Number of bathrooms in the property" %></p>
+		<p>Upload photos of your property: <%= form.file_field :galleries, multiple: true %></p>
 	
 		<%= form.submit %>
 	<% end %>
 
 	<h4>No longer listing the property? Delete this listing.</h4>
 	
-	<%= link_to 'Delete', listing_path, 
+	<button><%= link_to 'Delete Listing', listing_path, 
                              method: :delete, 
-                             data: { confirm: 'Are you sure?' } %>
+                             data: { confirm: 'Are you sure you want to delete listing?' } %></button>
 	
 <% end %>
 

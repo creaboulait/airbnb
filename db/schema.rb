@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_153500) do
+ActiveRecord::Schema.define(version: 2018_07_09_154814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,12 @@ ActiveRecord::Schema.define(version: 2018_07_05_153500) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country"
+    t.string "state"
+    t.string "city"
+    t.string "zipcode"
+    t.boolean "verification", default: false
+    t.json "galleries"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
@@ -51,6 +57,8 @@ ActiveRecord::Schema.define(version: 2018_07_05_153500) do
     t.string "encrypted_password", limit: 128, null: false
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
+    t.integer "role", default: 0
+    t.string "profilepic"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
