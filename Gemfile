@@ -48,6 +48,13 @@ gem 'omniauth-google-oauth2'
 # To seed fake data
 gem 'faker'
 
+# To paginate
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+
+# To upload & manage images
+gem 'mini_magick'
+gem 'carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

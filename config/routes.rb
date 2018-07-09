@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
-  resources :listings, controller: "listings" 
-
-  resources :users, controller: "users", only: [:create] do
+  resources :listings, controller: "listings"
+  
+  
+  resources :users, controller: "users", only: [:create, :edit, :update, :show] do
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
@@ -24,12 +25,14 @@ Rails.application.routes.draw do
   # redirects the user from Google to our app
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
+  #Routes for Listing
   get 'listings#index' => 'welcome#index'
   get 'listings/new' => 'listings#new'
   post 'listings' => 'listings#create'
   get 'listings/:id' => 'listings#show'
   get 'listings/:id/edit' => 'listings#edit'
-  patch 'listings/:id' => 'listing#update'
-  delete 'listings/:id' => 'listing#destroy'
+  patch 'listings/:id' => 'listings#update'
+  delete 'listings/:id' => 'listings#destroy'
+  patch 'listings/:id/verify' => 'listings#verify', as: "verify"
 
 end

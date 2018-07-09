@@ -1,17 +1,19 @@
 class ListingsController < ApplicationController
+  # before_action :require_login, only [:new, :create]
 
 	def index
+		@listing = Listing.page(params[:page]).per(10)
+		render 'welcome/index.html.erb'
 	end
 
 	def new
 		@listing = Listing.new
-		# render 'listings/new.html.erb'
 	end
 
 	def create
-		listing = Listing.new(listing_params)
-		listing.user_id = current_user.id
-		listing.save
+		@listing = Listing.new(listing_params)
+		@listing.user_id = current_user.id
+		@listing.save
 
 		redirect_to root_path
 	end
@@ -40,12 +42,21 @@ class ListingsController < ApplicationController
       	@listing.bedrooms_num = params[:listing][:bedrooms_num]
       	@listing.beds_num = params[:listing][:beds_num]
       	@listing.bathrooms_num = params[:listing][:bathrooms_num]
+        @listing.galleries = params[:listing][:galleries]
+
   		@listing.save
 
   		redirect_to root_path	
   	end
 
+  	def verify
+  		
+   		@listing = Listing.find(params[:id])
+   		@listing.verify!
+   		redirect_to root_path 
+  	end
 
+  	
   	def destroy
   		@listing = Listing.find(params[:id])
   		@listing.destroy
@@ -55,7 +66,8 @@ class ListingsController < ApplicationController
 
 	private
 	def listing_params
-    	params.require(:listing).permit(:description, :price, :area, :place_type, :up_to_guests_num, :house_type, :bedrooms_num, :beds_num, :bathrooms_num, :address)
+    	params.require(:listing).permit(:description, :price, :area, :place_type, :up_to_guests_num, :house_type, :bedrooms_num, :beds_num,
+    	 :bathrooms_num, :country, :state, :city, :zipcode, :address, :verification,{galleries: []})
   	end
 
 end

@@ -6,11 +6,37 @@
 <hr />
 
 <h2>Check out recent listings!</h2>
+<br />
 
-<% Listing.all.each do |listing| %>
-<a href = 'listings/<%= listing.id %>' ><p>Listing #: <%= listing.id %></p>
-<p>Area: <%= listing.area %></p>
-<p>Description: <%= listing.description %></p>
-<p>Max guests: <%= listing.up_to_guests_num %></p></a><br />
+<table>
+	<thead>
+		<tr>
+			<th>No.</th>
+			<th>Area</th>
+			<th>Description</th>
+			<th>Link</th>
+		</tr>
+	</thead>
 
-<% end %>
+	<tbody>
+		<% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+    		<% x = 0 %>
+  		<% else %>
+     		<% page = params[:page].to_i - 1 %>
+    		<% x = page * 10 %>
+    	<% end %>
+
+		<% @listing = Listing.page(params[:page]).per(10) %>
+		<% @listing.order(:area).each_with_index do |list, index| %>
+		
+			<tr>
+				<td><%= index = x += 1 %></td>
+				<td><%= list.area %></td>
+				<td><%= list.description %></td>
+				<td><a href = 'listings/<%= list.id %>' >Find out more!</a></td>
+			</tr>
+		<% end %>
+
+	</tbody>
+</table>
+<%= paginate @listing, theme: 'twitter-bootstrap-4' %>
