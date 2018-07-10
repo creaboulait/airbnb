@@ -56,6 +56,11 @@ gem 'bootstrap4-kaminari-views'
 gem 'mini_magick'
 gem 'carrierwave'
 
+# To utilise AWS cloud storage
+gem 'fog-aws'
+gem 'aws-sdk-rails'
+gem 'carrierwave-aws'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -67,8 +67,10 @@ class ListingsController < ApplicationController
 	private
 	def listing_params
     	params.require(:listing).permit(:description, :price, :area, :place_type, :up_to_guests_num, :house_type, :bedrooms_num, :beds_num,
-    	 :bathrooms_num, :country, :state, :city, :zipcode, :address, :verification,{galleries: []})
+    	 :bathrooms_num, :country, :state, :city, :zipcode, :address, :verification,{galleries: []}, amenities: [])
   	end
+
+  
 
 end
 

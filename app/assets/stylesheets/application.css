@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.gallery-images {
+	border: 2px solid white;
+	border-radius: 50%;
+}
