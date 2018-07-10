@@ -10,11 +10,36 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree 
  *= require_self
  */
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+@import 'reservations';
 
-.gallery-images {
+
+body {
+  color: #565A5C;
+  background-color: #F8F8F8;
+  .main-container{
+    padding-top: 20px;
+  }
+}
+
+
+.carousel-item {
+	width: 100%;
+	height: auto;
+}
+
+#profilepic {
+  width: 50px;
+  border-radius: 50%;
+}
+
+/*.gallery-images {
 	border: 2px solid white;
 	border-radius: 50%;
 }
+*/

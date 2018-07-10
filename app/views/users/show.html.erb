@@ -2,20 +2,37 @@
 <h5>Welcome, <%= @user.first_name %> <%= @user.last_name %>!</h5>
 
 
-<div class = "gallery-images">
+<div id = "profilepic">
 	<%= image_tag @user.profilepic_url.to_s %>
 </div>
 
 <% if @user.id == current_user.id %>
-	<h4>Your list of reservations</h4>
-	
-	<% @user.reservations.each do |reservation| %>
-		Check in:  <%= reservation.start_date %>, Check out: <%= reservation.end_date %><br />
-		City: <%= reservation.listing.city %><br />
-		Total paid: <%= reservation.total %><br /><br />
-	<% end %>
-<% end %>
+	<h3>Your list of reservations</h3>
 
+<!-- <container == flexbox, display space around> -->
+<div class="container-fluid">
+<div class="row">
+<!-- <div class="col-sm-6"> -->
+<container class="d-inline-flex p-1 bg-secondary text-center">
+		<% @user.reservations.each do |reservation| %>
+		<!-- <div class="card" style="width: 30%;"> -->
+		<div class="card p-2 bg-white flex-fill">
+			<div class="card-header bg-info text-white"><h4>Check in:  <%= reservation.start_date %>, Check out: <%= reservation.end_date %></h4></div>
+				<div class="card-body">
+				<p class="card-text">City: <%= reservation.listing.city %></p>
+				<p class="card-text">Total paid: <%= reservation.total %></p><br />
+				<!-- <a href="#" class="btn btn-primary">Cancel reservation</a> -->
+				<p class="btn btn-danger text-white"><%= link_to 'Cancel Reservation', listing_reservations_path(reservation.listing.id, reservation_id: reservation.id), 
+                             method: :delete, 
+                             data: { confirm: 'Are you sure you want to delete listing?' } %></p>
+				</div>
+		</div>
+		<% end %>
+</container>
+<!-- </div> -->
+</div>
+</div>
+<% end %>
 
 
 
