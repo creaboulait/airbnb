@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
-  resources :listings, controller: "listings"
-  
+  resources :listings, controller: "listings" do
+    resource :reservations, controller: "reservations"
+  end
   
   resources :users, controller: "users", only: [:create, :edit, :update, :show] do
     resource :password,
@@ -26,13 +27,13 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
   #Routes for Listing
-  get 'listings#index' => 'welcome#index'
-  get 'listings/new' => 'listings#new'
-  post 'listings' => 'listings#create'
-  get 'listings/:id' => 'listings#show'
-  get 'listings/:id/edit' => 'listings#edit'
-  patch 'listings/:id' => 'listings#update'
-  delete 'listings/:id' => 'listings#destroy'
+  # get 'listings#index' => 'welcome#index'
+  # get 'listings/new' => 'listings#new'
+  # post 'listings' => 'listings#create'
+  # get 'listings/:id' => 'listings#show'
+  # get 'listings/:id/edit' => 'listings#edit'
+  # patch 'listings/:id' => 'listings#update'
+  # delete 'listings/:id' => 'listings#destroy'
   patch 'listings/:id/verify' => 'listings#verify', as: "verify"
 
 end

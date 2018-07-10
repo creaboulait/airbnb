@@ -15,6 +15,7 @@ class UsersController < Clearance::UsersController
 	end
 
 	def update
+		
 		if current_user.id == @user.id
 			@user.update(user_params)
      		render 'edit'
@@ -23,7 +24,7 @@ class UsersController < Clearance::UsersController
     	end
 	end
 
-	private
+	
 
 	private
 

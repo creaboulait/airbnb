@@ -3,7 +3,8 @@ class User < ApplicationRecord
 
  has_many :authentications, dependent: :destroy
  has_many :listings, dependent: :destroy
- has_one :photo
+ has_one :profilepic
+ has_many :reservations
 
  enum role: { customer: 0, moderator: 1, admin: 2 }
 
