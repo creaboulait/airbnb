@@ -1,3 +1,10 @@
+<!-- To think how to allow this only is no reservations during duration -->
+<!-- Hacking my way -->
+<!-- <button><#%= link_to 'Book now!', new_reservation_path + "?id=#{@listing.id}", method: :get %></button> -->
+
+<!-- Using nested routes -->
+<button><%= link_to 'Book now!',  new_listing_reservations_path(@listing.id), method: :get %></button>
+
 <!-- This runs if listing has been verified -->
 <% if @listing.verification == true %>
 	<h3>This listing has been VERIFIED.</h3>
@@ -23,15 +30,12 @@
 <p><strong>Images:</strong>
 
 <!-- <#%= form_for @listing, html: { multipart: true } do |f| %>
-  <p>
-    <#%= image_tag(@listing.galleries[0].url) if @listing.galleries? %>
-  </p>
+  <p><#%= image_tag(@listing.galleries[0].url) if @listing.galleries? %></p>
 <#% end %> -->
 
 <% @listing.galleries.each do |gallery| %>
 <img class="gallery-images" src="<%= gallery %>">
 <% end %>
-
 
 
 <br />
@@ -41,7 +45,6 @@
                              method: :patch, 
                              data: { confirm: 'Are you sure you want to verify listing?' } %></button>
 <% end %>
-
 <hr />
 
 

@@ -1,0 +1,38 @@
+<%= form_for [@listing, @reservation], :url => listing_reservations_path, :html => {:multipart => true} do |form| %>
+	<div class="text-field">
+  		<%= form.label :check_in %>
+  		<%= form.date_field :start_date %>
+	</div>
+
+	<div class="text-field">
+  		<%= form.label :check_out %>
+  		<%= form.date_field :end_date %>
+	</div>
+
+	<%= form.hidden_field :listing_id, value: "#{@listing.id}" %>
+	<%= form.hidden_field :price, value: "#{@listing.price}" %>
+
+	<%= form.submit %>
+
+ <% end %>
+
+<!-- Bootstrap calendar but didt work -->
+ <!-- <div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div> -->
