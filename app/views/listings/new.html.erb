@@ -16,6 +16,17 @@
 	<p>State:  <%= form.text_field :state, placeholder: "State where your property resides" %></p>
 	<p>Country:  <%= form.text_field :country, placeholder: "Country where your property resides" %></p><br />
 
+	<%= form.label :amenities %> :<br />
+	Essentials (Towels, bed sheets, soap, toilet paper and pillows)
+	<%= form.check_box :amenities, {multiple: true}, "Essentials", nil %><br />
+	Wifi <%= form.check_box :amenities, {multiple: true}, "Wifi", nil %><br />
+	TV <%= form.check_box :amenities, {multiple: true}, "TV", nil %><br />
+	Heating <%= form.check_box :amenities, {multiple: true}, "Heating", nil %><br />
+	Aircon <%= form.check_box :amenities, {multiple: true}, "Aircon", nil %><br />
+	Smoking Allowed <%= form.check_box :amenities, {multiple: true}, "Smoking Allowed", nil %><br />
+	Pets Allowed <%= form.check_box :amenities, {multiple: true}, "Pets Allowed", nil %><br />
+
+	<br />
 	<p>Upload photos of your property: <%= form.file_field :galleries, multiple: true %></p>
 	
 	

@@ -15,6 +15,11 @@
 <p>No. of beds: <%= @listing.beds_num %></p>
 <p>No. of bathrooms: <%= @listing.bathrooms_num %></p>
 
+<p>Amenities: </p>
+<% @listing.amenities.each do |a| %>
+<li><%= a %></li>
+<% end %>
+
 <p><strong>Images:</strong>
 
 <!-- <#%= form_for @listing, html: { multipart: true } do |f| %>
@@ -24,7 +29,7 @@
 <#% end %> -->
 
 <% @listing.galleries.each do |gallery| %>
-<img src="<%= gallery %>">
+<img class="gallery-images" src="<%= gallery %>">
 <% end %>
 
 
@@ -43,7 +48,8 @@
 <!-- Set condition so that only the user can edit or delete their own listings -->
 <% if @listing.user_id == current_user.id %>
 	<h3>Had a recent property renovation? Able to accept more guests? Change in prices? Edit this listing.</h3>
-	<h4>Note: You cannot edit the area and address of property. Go to new listing to list a new property.</h4>
+	<h6>Note: You cannot edit the area and address of property. Go to new listing to list a new property.</h6>
+	<br />
 	<%= form_for @listing do |form| %>
 		<p>Property description:  <%= form.text_field :description, placeholder: "Say a few words about your property" %></p>
 		<p>Price per night:  <%= form.text_field :price, placeholder: "Price of renting your property per night" %></p>
@@ -57,6 +63,7 @@
 		<%= form.submit %>
 	<% end %>
 
+	<br />
 	<h4>No longer listing the property? Delete this listing.</h4>
 	
 	<button><%= link_to 'Delete Listing', listing_path, 
