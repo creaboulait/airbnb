@@ -7,7 +7,6 @@ class ReservationsController < ApplicationController
 	end
 
 	def new
-		
 		@listing = Listing.find(params[:listing_id])
 		@reservation = Reservation.new
 	end
@@ -16,9 +15,18 @@ class ReservationsController < ApplicationController
 		@reservation = Reservation.new(reservation_params)
 		@reservation.user_id = current_user.id
 		@reservation.total = (@reservation.end_date - @reservation.start_date) * @reservation.price
+		
 		@reservation.save
+		redirect_to root_path, notice: "Your reservation has been successful."
+	end
 
-		redirect_to root_path
+	def destroy
+		byebug
+		@listing = Listing.find(params[:listing_id])
+		@reservation = Reservation.find(params[:reservation_id])
+  		@reservation.destroy
+
+  		redirect_to root_path
 	end
 
 
