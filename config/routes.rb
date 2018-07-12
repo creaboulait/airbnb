@@ -31,16 +31,11 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
   #Routes for Listing
-  # get 'listings#index' => 'welcome#index'
-  # get 'listings/new' => 'listings#new'
-  # post 'listings' => 'listings#create'
-  # get 'listings/:id' => 'listings#show'
-  # get 'listings/:id/edit' => 'listings#edit'
-  # patch 'listings/:id' => 'listings#update'
-  # delete 'listings/:id' => 'listings#destroy'
   patch 'listings/:id/verify' => 'listings#verify', as: "verify"
 
+  #Routes for Payments
   get 'reservations/:id/payments/new' => 'payments#new', as: "new_payment"
   post 'reservations/:id/payments/checkout' => 'payments#checkout', as: "checkout_payment"
+
   
 end
