@@ -26,13 +26,14 @@ class Reservation < ApplicationRecord
     # Check if a given reservation overlaps this interval
     def overlapping_reservations
         
-        Reservation.where("listing_id =?", self.listing_id).each do |r|
+        Reservation.where("listing_id = ?", self.listing_id).where.not(id: self.id).each do |r|
             if overlaps?(r)
                 return errors.add(:overlapping_dates, message:"These dates are unavailable.")
             end
         end
     end
 
+   
     private    
     # Checks if a given reservation overlaps this reservation    
     def overlaps?(other)
