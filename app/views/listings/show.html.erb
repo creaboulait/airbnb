@@ -3,7 +3,7 @@
 <!-- <button><#%= link_to 'Book now!', new_reservation_path + "?id=#{@listing.id}", method: :get %></button> -->
 
 <!-- Using nested routes -->
-<button><%= link_to 'Book now!',  new_listing_reservations_path(@listing.id), method: :get %></button>
+<button><%= link_to 'Book now!',  new_listing_reservation_path(@listing.id), method: :get %></button>
 
 <!-- This runs if listing has been verified -->
 <% if @listing.verification == true %>

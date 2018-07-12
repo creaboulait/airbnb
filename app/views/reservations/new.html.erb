@@ -1,18 +1,51 @@
 <%= form_for [@listing, @reservation], :url => listing_reservations_path, :html => {:multipart => true} do |form| %>
 	<div class="text-field">
   		<%= form.label :check_in %>
-  		<%= form.date_field :start_date %>
+  		<%= form.text_field :start_date, id: "datepicker1", width: 300, height: 70 %>
 	</div>
 
 	<div class="text-field">
   		<%= form.label :check_out %>
-  		<%= form.date_field :end_date %>
+  		<%= form.text_field :end_date, id: "datepicker2", width: 300, height: 70 %>
 	</div>
+
+	<br />
 
 	<%= form.hidden_field :listing_id, value: "#{@listing.id}" %>
 	<%= form.hidden_field :price, value: "#{@listing.price}" %>
 
-	<%= form.submit %>
+<%= form.submit %>
+<!-- 
+	<p>
+   <#%= form.label :check_in %><br>
+   <#%= form.text_field :start_date, id: "datepicker1", width: 276 %>
+ 	</p>
 
+	<p>
+   <#%= form.label :check_out %><br>
+   <#%= form.text_field :end_date, id: "datepicker2", width: 276  %>
+ 	</p> -->
  <% end %>
+
+
+<!-- This for should bring you to the payment page -->
+
+<!-- <#%= form_tag(new_reservation_payment_path(reservation_id: reservation.id), method: :get) do %>
+  <#%= submit_tag 'Make payment' %>  -->
+<!-- <#% end %> -->
+	
+
+
+
+ <script>
+       $('#datepicker1').datepicker({
+           format: 'dd/mm/yyyy',
+           uiLibrary: 'bootstrap4'
+       });
+
+       $('#datepicker2').datepicker({
+           format: 'dd/mm/yyyy',
+           uiLibrary: 'bootstrap4'
+       });
+</script>
 

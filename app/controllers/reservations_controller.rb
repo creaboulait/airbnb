@@ -16,12 +16,17 @@ class ReservationsController < ApplicationController
 		@reservation.user_id = current_user.id
 		@reservation.total = (@reservation.end_date - @reservation.start_date) * @reservation.price
 		
-		@reservation.save
-		redirect_to root_path, notice: "Your reservation has been successful."
+		if @reservation.save
+			flash[:success] = "Your reservation is pending payment."
+			redirect_to new_payment_path(@reservation.id)
+		else
+			flash[:unavailable] = "#{@reservation.errors.full_messages}"
+			redirect_to root_path
+		end
 	end
 
 	def destroy
-		byebug
+		
 		@listing = Listing.find(params[:listing_id])
 		@reservation = Reservation.find(params[:reservation_id])
   		@reservation.destroy
@@ -33,7 +38,7 @@ class ReservationsController < ApplicationController
 
 private
 	def reservation_params
-		params.require(:reservation).permit(:start_date, :end_date, :listing_id, :price, :total)
+		params.require(:reservation).permit(:start_date, :end_date, :user_id, :listing_id, :price, :total)
 	end
 end
 
