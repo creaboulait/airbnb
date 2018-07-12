@@ -72,6 +72,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 # For payment gateaway
 gem 'braintree'
 
+# For background jobs handling
+gem 'sidekiq'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
