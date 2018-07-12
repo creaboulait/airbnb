@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   resource :session, controller: "clearance/sessions", only: [:create]
 
   resources :listings, controller: "listings" do
-    resource :reservations, controller: "reservations"
+    resources :reservations, controller: "reservations", except: [:show]
   end
+
+  # resources :reservations, only: [:show] do
+  #   resources :payments, controller: "payments", only: [:new, :checkout]
+  # end
   
   resources :users, controller: "users", only: [:create, :edit, :update, :show] do
     resource :password,
@@ -36,4 +40,7 @@ Rails.application.routes.draw do
   # delete 'listings/:id' => 'listings#destroy'
   patch 'listings/:id/verify' => 'listings#verify', as: "verify"
 
+  get 'reservations/:id/payments/new' => 'payments#new', as: "new_payment"
+  post 'reservations/:id/payments/checkout' => 'payments#checkout', as: "checkout_payment"
+  
 end
