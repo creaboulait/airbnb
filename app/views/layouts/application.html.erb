@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application' %>
@@ -25,17 +27,47 @@
 </head>
 
 <body>
-  <div id="header">
-    <% if signed_in? -%>
-      <p> Signed in as: <%= current_user.email %> </p>
-      <p> Access Level: <%= current_user.role %> </p>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-      <%= button_to "Home", user_path(current_user), method: :get %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-      <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
-    <% end -%>
-  </div><br />
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-0">
+  <a class="navbar-brand text-white">Logo</a>
+  <div class="d-inline-flex" style="position: relative;">
+  <ul class="navbar-nav">
+      <% if signed_in? -%>
+          <li class="nav-item">
+            <a class="nav-link">Signed in as: <%= current_user.email %></a>
+          </li>
+          <li class="nav-item px-5">
+            <a class="nav-link">Access Level: <%= current_user.role %></a>
+          </li>
+          <li class="px-5">
+            <%= link_to t(".sign_out"), sign_out_path, method: :delete, style: "color: white;", class: "float-right" %>
+          </li>
+          <li>
+            <%= link_to "Home", user_path(current_user), method: :get, style: "color: white;",  class: "float-right"%>
+          </li>
+      <% else -%>
+          <li class="nav-item px-5">
+            <%= link_to t(".sign_in"), sign_in_path %>
+          </li>
+          <li class="nav-item px-5">
+            <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
+          </li>
+      <% end %>
+      </div>
+  </ul>
+  
+</nav>
+
+  <!-- <div id="header">
+    <#% if signed_in? -%>
+      <p> Signed in as: <#%= current_user.email %> </p>
+      <p> Access Level: <#%= current_user.role %> </p>
+      <#%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+      <#%= button_to "Home", user_path(current_user), method: :get %>
+    <#% else -%>
+      <#%= link_to t(".sign_in"), sign_in_path %>
+      <#%= link_to "Sign in with Google", "/auth/google_oauth2" %>
+    <#% end -%>
+  </div><br /> -->
 
 
   <div id="flash">
@@ -43,6 +75,11 @@
       <div id="flash_<%= key %>"><%= value %></div>
     <% end %>
   </div>
+
+
+  <% if flash[:notice] -%>
+    <div class = "alert alert-success"><%= flash[:notice] %></div>
+  <% end %>
 
   <%= yield %>
 

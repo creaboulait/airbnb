@@ -18,16 +18,23 @@
 @import 'bootstrap-datetimepicker';
 @import 'reservations';
 @import 'payments';
+@import 'users';
 
 
 body {
   color: #565A5C;
+  font-family: 'Nunito', sans-serif;
   background-color: #F8F8F8;
   .main-container{
     padding-top: 20px;
   }
 }
 
+#airbnb-header {
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://images.pexels.com/photos/356830/pexels-photo-356830.jpeg?auto=compress&cs=tinysrgb&h=350");
+  background-size: cover;
+  background-position: center center;
+}
 
 .carousel-item {
 	width: 100%;
@@ -42,5 +49,11 @@ body {
 /*.gallery-images {
 	border: 2px solid white;
 	border-radius: 50%;
+}
+
+#listing-sidebar {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 */

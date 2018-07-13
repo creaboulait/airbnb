@@ -86,3 +86,24 @@
   margin: 0 auto;
   padding: 1.875em;
 }
+
+/* configure the properties for location class */
+  .location {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight:bold;
+    color:brown;
+  }
+
+  /* configure the properties for title class */
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* configure the properties for price class */
+  .price {
+    font-size:14px;
+    font-weight:400;
+  }
+  

@@ -2,8 +2,8 @@
 <h5>Welcome, <%= @user.first_name %> <%= @user.last_name %>!</h5>
 
 
-<div id = "profilepic">
-	<%= image_tag @user.profilepic_url.to_s %>
+<div id="profilepic">
+	<%= image_tag @user.profilepic_url.to_s %> 
 </div>
 
 <% if @user.id == current_user.id %>

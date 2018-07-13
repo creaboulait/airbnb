@@ -1,12 +1,13 @@
+<br />
 <%= form_for [@listing, @reservation], :url => listing_reservations_path, :html => {:multipart => true} do |form| %>
 	<div class="text-field">
   		<%= form.label :check_in %>
-  		<%= form.text_field :start_date, id: "datepicker1", width: 300, height: 70 %>
-	</div>
+  		<%= form.text_field :start_date, id: "datepicker1", width: 276, height: 100 %>
+	</div><br />
 
 	<div class="text-field">
   		<%= form.label :check_out %>
-  		<%= form.text_field :end_date, id: "datepicker2", width: 300, height: 70 %>
+  		<%= form.text_field :end_date, id: "datepicker2", width: 276, height: 100 %>
 	</div>
 
 	<br />
@@ -14,16 +15,17 @@
 	<%= form.hidden_field :listing_id, value: "#{@listing.id}" %>
 	<%= form.hidden_field :price, value: "#{@listing.price}" %>
 
-<%= form.submit %>
-<!-- 
-	<p>
+  <%= form.submit %>
+
+  <!-- <input type="text" data-provide='datepicker' > -->
+	<!-- <p>
    <#%= form.label :check_in %><br>
-   <#%= form.text_field :start_date, id: "datepicker1", width: 276 %>
+   <#%= form.date_field :start_date, id: "datepicker1", width: 276 %>
  	</p>
 
 	<p>
    <#%= form.label :check_out %><br>
-   <#%= form.text_field :end_date, id: "datepicker2", width: 276  %>
+   <#%= form.date_field :end_date, id: "datepicker2", width: 276  %>
  	</p> -->
  <% end %>
 
@@ -37,15 +39,27 @@
 
 
 
- <script>
+ <script type="text/javascript">
+ var noDates = ["14/07/2018","15/07/2018"]
        $('#datepicker1').datepicker({
            format: 'dd/mm/yyyy',
-           uiLibrary: 'bootstrap4'
+           uiLibrary: 'bootstrap4',
+           // allowInputToggle: true,
+           // disabledDates: noDates
+           
        });
 
        $('#datepicker2').datepicker({
            format: 'dd/mm/yyyy',
            uiLibrary: 'bootstrap4'
        });
+
 </script>
+
+<!-- <script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script> -->
+<!-- //= require bootstrap-datepicker -->
 

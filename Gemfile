@@ -68,9 +68,12 @@ gem 'carrierwave-aws'
 # To use datepicker
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
-
+# gem 'bootstrap-datepicker-rails'
 # For payment gateaway
 gem 'braintree'
+
+# For background jobs handling
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
