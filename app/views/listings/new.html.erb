@@ -1,20 +1,21 @@
-<h3>List your property today!</h3> 
+<h3>List your property today!</h3><br />
 
+<div class="float-left">
 <%= form_for @listing do |form| %>
-	<p>Property description:  <%= form.text_field :description, placeholder: "Say a few words about your property" %></p>
-	<p>Price per night:  <%= form.text_field :price, placeholder: "Price of renting your property per night" %></p>
+	<p>Property description:  <%= form.text_field :description, :size => 50, placeholder: "Say a few words about your property" %></p>
+	<p>Price per night:  <%= form.text_field :price, :size => 50, placeholder: "Price of renting your property per night" %></p>
 	<p>Property area:  <%= form.text_field :area, placeholder: "Area of your property" %></p>
-	<p>Property renting basis: <%= form.text_field :place_type, placeholder: "Entire Place/Private Room/Shared Room?" %></p>
-	<p>Max no. of guests per night:  <%= form.text_field :up_to_guests_num, placeholder: "Max number of guests per night" %></p>
-	<p>Property type:  <%= form.text_field :house_type, placeholder: "Property type: either a house/apartment/cabin etc" %></p><br />
-	<p>No. of bedrooms:  <%= form.text_field :bedrooms_num, placeholder: "Number of bedrooms in the property" %></p>
-	<p>No. of beds:  <%= form.text_field :beds_num, placeholder: "Number of beds in the property" %></p>
-	<p>No. of bathrooms:  <%= form.text_field :bathrooms_num, placeholder: "Number of bathrooms in the property" %></p><br />
-	<p>Property number and Street address:  <%= form.text_field :address, placeholder: "Your property's number and street name" %></p>
+	<p>Property renting basis: <%= form.text_field :place_type, :size => 40, placeholder: "Entire Place/Private Room/Shared Room?" %></p>
+	<p>Max no. of guests per night:  <%= form.text_field :up_to_guests_num, :size => 30, placeholder: "Max number of guests per night" %></p>
+	<p>Property type:  <%= form.text_field :house_type, :size => 40, placeholder: "Property type: either a house/apartment/cabin etc" %></p><br />
+	<p>No. of bedrooms:  <%= form.text_field :bedrooms_num, :size => 40, placeholder: "Number of bedrooms in the property" %></p>
+	<p>No. of beds:  <%= form.text_field :beds_num, :size => 40, placeholder: "Number of beds in the property" %></p>
+	<p>No. of bathrooms:  <%= form.text_field :bathrooms_num, :size => 40, placeholder: "Number of bathrooms in the property" %></p><br />
+	<p>Property number and Street address:  <%= form.text_field :address, :size => 40, placeholder: "Your property's number and street name" %></p>
 	<p>Zipcode:  <%= form.text_field :zipcode, placeholder: "Your property's zipcode" %></p>
-	<p>City:  <%= form.text_field :city, placeholder: "City where your property resides" %></p>
-	<p>State:  <%= form.text_field :state, placeholder: "State where your property resides" %></p>
-	<p>Country:  <%= form.text_field :country, placeholder: "Country where your property resides" %></p><br />
+	<p>City:  <%= form.text_field :city, :size => 40, placeholder: "City where your property resides" %></p>
+	<p>State:  <%= form.text_field :state, :size => 40, placeholder: "State where your property resides" %></p>
+	<p>Country:  <%= form.text_field :country, :size => 40, placeholder: "Country where your property resides" %></p><br />
 
 	<%= form.label :amenities %> :<br />
 	Essentials (Towels, bed sheets, soap, toilet paper and pillows)
@@ -32,6 +33,16 @@
 	
 	<%= form.submit %>
 <% end %>
+</div>
+
+<div class="float-right mt-5" id="listing-sidebar">
+    <article class="col-sm-11 offset-sm-1 text-right">
+      <img src="https://images.pexels.com/photos/346768/pexels-photo-346768.jpeg?auto=compress&cs=tinysrgb&h=350">
+      <h3 class="text-uppercase text-black" >The ornaments of your home are the<br/>people  who smile upon entering time<br/>and time again.</h3>
+      <p class="text-subheading text-black font-italic">~Maralee McKee</p>
+    </article>
+</div>
+	
 
 
     

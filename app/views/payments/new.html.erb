@@ -1,8 +1,9 @@
 <h1>Payment Gateaway</h1>
-<h4>Accepts Visa, Mastercard and Amex</h4><br />
+<h2>Accepts: <i class="fa fa-cc-visa"></i> <i class="fa fa-cc-mastercard"></i> <i class="fa fa-cc-amex"></i></h2><br />
 
-<p>Price per night: <%= @reservation.price %></p>
-<p>Duration: <%= (@reservation.end_date - @reservation.start_date).to_i %> day(s)</p>
+
+<h4>Price per night: <%= @reservation.price %></h4>
+<h4>Duration: <%= (@reservation.end_date - @reservation.start_date).to_i %> day(s)</h4>
 <h4><strong>Total price: <%= @reservation.total %></strong></h4>
 
 <div class="demo-frame">
@@ -103,3 +104,42 @@ braintree.client.create({
 });
 
 </script>
+
+<div class="row" id='tour'>
+
+  <div class="col item">
+    <img src='images/cameron.jpg' />
+    <p class='location'>Sightseeing &bull; Pahang</p>
+    <p class='title'>Cameron Highland Tea Farm Trip</p>
+    <p class='price'>RM120 per person</p>
+  </div>
+
+  <div class="col item">
+    <img src='images/kl.jpg' />
+    <p class='location'>Group Activity &bull; Kuala Lumpur</p>
+    <p class='title'>Kuala Lumpur Culture Walk</p>
+    <p class='price'>RM70 per person</p>
+  </div>
+
+  <div class="col item">
+    <img src='images/putrajaya.jpg' />
+    <p class='location'>Outdoor &bull; PutraJaya</p>
+    <p class='title'>Kayak at Putrajaya Lake</p>
+    <p class='price'>RM140 per person</p>
+  </div>
+
+  <div class="col item">
+    <img src='images/melaka.jpg' />
+    <p class='location'>Guided Walk &bull; PutraJaya</p>
+    <p class='title'>Melaka Heritage Food Trail</p>
+    <p class='price'>RM60 per person</p>
+  </div>
+
+  <div class="col item">
+    <img src='images/sarawak.jpg' />
+    <p class='location'>Culture Tour&bull; PutraJaya</p>
+    <p class='title'>Sarawak Culture Village</p>
+    <p class='price'>RM60 per person</p>
+  </div>
+
+</div> <!-- end of row -->

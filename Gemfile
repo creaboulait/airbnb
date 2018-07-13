@@ -68,7 +68,7 @@ gem 'carrierwave-aws'
 # To use datepicker
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
-
+# gem 'bootstrap-datepicker-rails'
 # For payment gateaway
 gem 'braintree'
 

@@ -20,7 +20,7 @@ class ReservationsController < ApplicationController
 		if @reservation.save
 			# flash[:success] = "Your reservation is pending payment."
 			ReservationJob.perform_now(@reservation)
-			# ReservationMailer.reservation_email(current_user.email, @reservation.listing.user.email, @reservation.id).deliver_later
+			# ReservationMailer.reservation_email(current_user.email, @reservation.listing.user.email, @reservation.id).deliver_now
         	format.html { redirect_to new_payment_path(@reservation.id, notice: 'Your reservation is pending payment.') }
         	format.json { render :index, status: :created, location: @reservation } 
 			# redirect_to new_payment_path(@reservation.id)
@@ -36,7 +36,7 @@ class ReservationsController < ApplicationController
 	
 
 	def destroy
-		
+		byebug
 		@listing = Listing.find(params[:listing_id])
 		@reservation = Reservation.find(params[:reservation_id])
   		@reservation.destroy
