@@ -15,28 +15,26 @@
 	</div>
 </header>
 
-
+<div class="text-center">
 <h3>Narrow your search:</h3>
-<div>
+
 <%= form_tag(search_path, method: :post) do %>
-City: <%= text_field_tag :city_search, params[:city_search] %><br />
-No. of bedrooms: <%= text_field_tag :bedrooms_search, params[:bedrooms_search] %><br />
-No. of bathrooms: <%= text_field_tag :bathrooms_search, params[:bathrooms_search] %><br />
-Amenities: <br />
-Essentials: <%= check_box_tag('amenities[]', value = 'Essentials', nil, {multiple: true}) %><br />
-Wifi: <%= check_box_tag('amenities[]', value = 'Wifi', nil, {multiple: true}) %><br />
-TV: <%= check_box_tag('amenities[]', value = 'TV', nil, {multiple: true}) %><br />
-Heating: <%= check_box_tag('amenities[]', value = 'Heating', nil, {multiple: true}) %><br />
-<%= submit_tag 'Filter Results', name: nil, class: "btn btn-warning btn-sm text-dark" %>
+<p>City: <%= text_field_tag :city_search, params[:city_search] %>
+<p>Min Price: <%= text_field_tag :min_price, params[:min_price] %> Max Price: <%= text_field_tag :max_price, params[:max_price] %></p>
+<p>No. of bedrooms: <%= text_field_tag :bedrooms_search, params[:bedrooms_search] %> No. of bathrooms: <%= text_field_tag :bathrooms_search, params[:bathrooms_search] %></p>
+<p>Amenities:</p> <!-- Still not working, to fix later -->
+   Essentials: <%= check_box_tag('amenities[]', value = 'Essentials', nil, {multiple: true}) %>
+   Wifi: <%= check_box_tag('amenities[]', value = 'Wifi', nil, {multiple: true}) %>
+   TV: <%= check_box_tag('amenities[]', value = 'TV', nil, {multiple: true}) %>
+   Heating: <%= check_box_tag('amenities[]', value = 'Heating', nil, {multiple: true}) %></p>
+<%= submit_tag 'Filter Results', name: nil, :class => "btn btn-warning btn-lg text-dark", :id => "submit" %>
 <% end %>
 </div>
 
 <br />
 
-<!-- <form class="example" >
-  <input type="text" placeholder="Search city" name="search">
-  <button type="submit"><i class="fa fa-search"></i></button>
-</form><br /> -->
+<!-- <div id="results">
+</div> -->
 
 <h2>Check out recent listings!</h2>
 <br />
