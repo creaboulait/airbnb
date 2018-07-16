@@ -3,8 +3,22 @@ class ListingsController < ApplicationController
 
 	def index
 		@listing = Listing.page(params[:page]).per(10)
+    
+    
 		render 'welcome/index.html.erb'
 	end
+
+  def search
+    
+    @listings = Listing.where(nil) # creates an anonymous scope
+    @listings = @listings.city_search(params[:city_search])
+    @listings = @listings.bedrooms_search(params[:bedrooms_search])
+    @listings = @listings.bathrooms_search(params[:bathrooms_search])
+    # @listings = Listing.search(params[:city_search])
+    # @listings = @listings.search(params[:amenities])
+    # @listings = Listing.filter(params.slice(:city_search))
+    
+  end
 
 	def new
 		@listing = Listing.new
@@ -66,7 +80,7 @@ class ListingsController < ApplicationController
 
 	private
 	def listing_params
-    	params.require(:listing).permit(:description, :price, :area, :place_type, :up_to_guests_num, :house_type, :bedrooms_num, :beds_num,
+    	params.require(:listing).permit(:city_search, :bedrooms_search, :bathrooms_search, :description, :price, :area, :place_type, :up_to_guests_num, :house_type, :bedrooms_num, :beds_num,
     	 :bathrooms_num, :country, :state, :city, :zipcode, :address, :verification,{galleries: []}, amenities: [])
   	end
 

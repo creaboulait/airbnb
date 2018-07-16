@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   #Routes for Listing
   patch 'listings/:id/verify' => 'listings#verify', as: "verify"
+  post 'listings/search' => 'listings#search', as: "search"
 
   #Routes for Payments
   get 'reservations/:id/payments/new' => 'payments#new', as: "new_payment"

@@ -6,8 +6,8 @@
               <article class="col-sm-10 offset-sm-1 text-center">
                 <h1 class="text-uppercase text-white">Welcome to Airbnb</h1>
                 <p class="text-subheading text-white">Some cities never sleep<br>But you still need to</p>
-                <button type="button" class="btn btn-primary btn-lg"><a href = 'listings/new' style="text-decoration: none; color: white">Start Hosting</a></button>
-                <button type="button" class="btn btn-primary btn-lg">Start Travelling</button>
+                <button type="button" class="btn btn-primary btn-lg"><a href = 'listings/new' style="text-decoration: none; color: white">Start Hosting</a></button><br />
+                <!-- <button type="button" class="btn btn-primary btn-lg">Start Travelling</button> -->
               </article>
             
           </div>
@@ -16,9 +16,32 @@
 </header>
 
 
+<h3>Narrow your search:</h3>
+<div>
+<%= form_tag(search_path, method: :post) do %>
+City: <%= text_field_tag :city_search, params[:city_search] %><br />
+No. of bedrooms: <%= text_field_tag :bedrooms_search, params[:bedrooms_search] %><br />
+No. of bathrooms: <%= text_field_tag :bathrooms_search, params[:bathrooms_search] %><br />
+Amenities: <br />
+Essentials: <%= check_box_tag('amenities[]', value = 'Essentials', nil, {multiple: true}) %><br />
+Wifi: <%= check_box_tag('amenities[]', value = 'Wifi', nil, {multiple: true}) %><br />
+TV: <%= check_box_tag('amenities[]', value = 'TV', nil, {multiple: true}) %><br />
+Heating: <%= check_box_tag('amenities[]', value = 'Heating', nil, {multiple: true}) %><br />
+<%= submit_tag 'Filter Results', name: nil, class: "btn btn-warning btn-sm text-dark" %>
+<% end %>
+</div>
+
+<br />
+
+<!-- <form class="example" >
+  <input type="text" placeholder="Search city" name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form><br /> -->
+
 <h2>Check out recent listings!</h2>
 <br />
 
+<!-- The form -->
 <table>
 	<thead>
 		<tr>

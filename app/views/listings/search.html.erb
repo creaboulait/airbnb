@@ -1,0 +1,27 @@
+<h2>Properties in <%= params[:city_search] %></h2>
+<br />
+
+<table>
+	<thead>
+		<tr>
+			<th>No.</th>
+			<th>Area</th>
+			<th>Description</th>
+			<th>Link</th>
+		</tr>
+	</thead>
+
+	<tbody>	
+		<% x = 0 %>
+		<% @listings.each do |list, index| %>
+		
+			<tr>
+				<td><%= index = x += 1 %></td>
+				<td><%= list.area %></td>
+				<td><%= list.description %></td>
+				<td><a href = '<%= list.id %>' >Find out more!</a></td>
+			</tr>
+		<% end %>
+
+	</tbody>
+</table>
