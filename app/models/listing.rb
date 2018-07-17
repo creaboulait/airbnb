@@ -14,16 +14,6 @@ class Listing < ApplicationRecord
  	scope :bedrooms_search, -> (bedrooms_search) { where "bedrooms_num = ?", bedrooms_search }
  	scope :bathrooms_search, -> (bathrooms_search) { where "bathrooms_num = ?", bathrooms_search }
  	scope :price_range, -> (min_price, max_price) { where "price > ? AND price < ?", min_price, max_price }
- 	
-
-
- # 	def self.search(attribute)
- #  		if attribute
- #    		where('area LIKE ?', "%#{attribute}%") && where('amenities LIKE ?', "%#{attribute}%")
- #  		else
- #    		all
- #  		end
-	# end
 
 end
 

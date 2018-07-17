@@ -1,20 +1,26 @@
 class ListingsController < ApplicationController
   # before_action :require_login, only [:new, :create]
 
+  skip_before_action :verify_authenticity_token, only: :search
 
 	def index
-		@listing = Listing.page(params[:page]).per(10)
+		@listing = Listing.page(params[:page]).per(9)
 		render 'welcome/index.html.erb'
 	end
 
-  def search
+  def search    
     
     @listings = Listing.where(nil) # creates an anonymous scope
     @listings = @listings.city_search(params[:city_search]) if params[:city_search].present?
     @listings = @listings.bedrooms_search(params[:bedrooms_search]) if params[:bedrooms_search].present?
     @listings = @listings.bathrooms_search(params[:bathrooms_search]) if params[:bathrooms_search].present?
-    @listings = @listings.price_range(params[:min_price], params[:max_price])
-    
+    @listings = @listings.price_range(params[:min_price], params[:max_price]) if (params[:min_price].present? || params[:max_price].present?)
+
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @listings}
+    end
   end
 
 	def new

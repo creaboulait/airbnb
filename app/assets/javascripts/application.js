@@ -11,15 +11,44 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 //= require moment
 //= require bootstrap-datetimepicker
 
-// document.addEventListener("DOMContentLoaded", function(event){
-// 	$("#submit").on("keypress", function(e){
-// 		$.ajax({url: "/listings/search",
+document.addEventListener("DOMContentLoaded", function(event){
+	$("#city_search").on("keyup", function(e){
+		e.preventDefault();
+
+		$.ajax({
+		url: "listings/search",
+	   	type: "POST",
+	   	data: $(this).serialize(),
+	   	dataType: "json",
+	   	success: function(data) {
+	   		
+	   		let titles = document.getElementById("cities")
+	   		titles.innerHTML = ""
+
+	   		data.forEach(function(listing){	
+	   			let option = document.createElement("option")
+	   			option.value = listing.area
+	   			cities.append(option)
+	   		})
+	   	}
+		})
+	})
+});
+
+// $(function() {
+//     /* Convenience for forms or links that return HTML from a remote ajax call.
+//     The returned markup will be inserted into the element id specified.
+//      */
+//     $('form[data-update-target]').on('keypress', function(evt, data) {
+//         var target = $(this).data('update-target');
+//         $.ajax({url: "/listings/search",
 // 	   	type: "post",
 // 	   	dataType: "script",
 // 	   	success: function() {
@@ -27,10 +56,9 @@
 // 	   	},
 // 	   	error: function() {
 // 	   	console.log("Error")}
-// 		})
-// 	})
-// })
-
+// 		}).html(data);
+//     });
+// });
 
 
 
