@@ -1,22 +1,19 @@
 class ListingsController < ApplicationController
   # before_action :require_login, only [:new, :create]
 
+
 	def index
 		@listing = Listing.page(params[:page]).per(10)
-    
-    
 		render 'welcome/index.html.erb'
 	end
 
   def search
     
     @listings = Listing.where(nil) # creates an anonymous scope
-    @listings = @listings.city_search(params[:city_search])
-    @listings = @listings.bedrooms_search(params[:bedrooms_search])
-    @listings = @listings.bathrooms_search(params[:bathrooms_search])
-    # @listings = Listing.search(params[:city_search])
-    # @listings = @listings.search(params[:amenities])
-    # @listings = Listing.filter(params.slice(:city_search))
+    @listings = @listings.city_search(params[:city_search]) if params[:city_search].present?
+    @listings = @listings.bedrooms_search(params[:bedrooms_search]) if params[:bedrooms_search].present?
+    @listings = @listings.bathrooms_search(params[:bathrooms_search]) if params[:bathrooms_search].present?
+    @listings = @listings.price_range(params[:min_price], params[:max_price])
     
   end
 
@@ -79,8 +76,13 @@ class ListingsController < ApplicationController
   	end
 
 	private
+    
+  def filtering_params
+    params.require(:listing).permit(:city_search, :bedrooms_search, :bathrooms_search, :price_range)
+  end
+
 	def listing_params
-    	params.require(:listing).permit(:city_search, :bedrooms_search, :bathrooms_search, :description, :price, :area, :place_type, :up_to_guests_num, :house_type, :bedrooms_num, :beds_num,
+    	params.require(:listing).permit(:description, :price, :area, :place_type, :up_to_guests_num, :house_type, :bedrooms_num, :beds_num,
     	 :bathrooms_num, :country, :state, :city, :zipcode, :address, :verification,{galleries: []}, amenities: [])
   	end
 

@@ -17,3 +17,20 @@
 //= require moment
 //= require bootstrap-datetimepicker
 
+// document.addEventListener("DOMContentLoaded", function(event){
+// 	$("#submit").on("keypress", function(e){
+// 		$.ajax({url: "/listings/search",
+// 	   	type: "post",
+// 	   	dataType: "script",
+// 	   	success: function() {
+// 	   	console.log("OK")
+// 	   	},
+// 	   	error: function() {
+// 	   	console.log("Error")}
+// 		})
+// 	})
+// })
+
+
+
+
