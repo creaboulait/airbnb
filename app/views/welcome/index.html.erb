@@ -64,6 +64,7 @@
     <% end %>
 </div>
 <%= paginate @listing, theme: 'twitter-bootstrap-4' %>
+
 <!-- The form -->
 <!-- <table>
   <thead>
@@ -90,7 +91,7 @@
         <td><#%= index = x += 1 %></td>
         <td><#%= list.area %></td>
         <td><#%= list.description %></td>
-        <td><a href = 'listings/<%= list.id %>' >Find out more!</a></td>
+        <td><a href = 'listings/<#%= list.id %>' >Find out more!</a></td>
       </tr>
     <#% end %>
 
