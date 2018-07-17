@@ -7,7 +7,6 @@
                 <h1 class="text-uppercase text-white">Welcome to Airbnb</h1>
                 <p class="text-subheading text-white">Some cities never sleep<br>But you still need to</p>
                 <button type="button" class="btn btn-primary btn-lg"><a href = 'listings/new' style="text-decoration: none; color: white">Start Hosting</a></button><br />
-                <!-- <button type="button" class="btn btn-primary btn-lg">Start Travelling</button> -->
               </article>
             
           </div>
@@ -19,73 +18,81 @@
 <h3>Narrow your search:</h3>
 
 <%= form_tag(search_path, method: :post) do %>
-<p>City: <%= text_field_tag :city_search, params[:city_search] %>
-<p>Min Price: <%= text_field_tag :min_price, params[:min_price] %> Max Price: <%= text_field_tag :max_price, params[:max_price] %></p>
-<p>No. of bedrooms: <%= text_field_tag :bedrooms_search, params[:bedrooms_search] %> No. of bathrooms: <%= text_field_tag :bathrooms_search, params[:bathrooms_search] %></p>
-<p>Amenities:</p> <!-- Still not working, to fix later -->
-   Essentials: <%= check_box_tag('amenities[]', value = 'Essentials', nil, {multiple: true}) %>
-   Wifi: <%= check_box_tag('amenities[]', value = 'Wifi', nil, {multiple: true}) %>
-   TV: <%= check_box_tag('amenities[]', value = 'TV', nil, {multiple: true}) %>
-   Heating: <%= check_box_tag('amenities[]', value = 'Heating', nil, {multiple: true}) %></p>
-<%= submit_tag 'Filter Results', name: nil, :class => "btn btn-warning btn-lg text-dark", :id => "submit" %>
+  <p>City: <%= text_field_tag :city_search, params[:city_search], list:"cities" %></p>
+  <datalist id="cities"></datalist>
+
+  <p>Min Price: <%= text_field_tag :min_price, params[:min_price] %> Max Price: <%= text_field_tag :max_price, params[:max_price] %></p>
+  
+  <p>
+    No. of bedrooms: <%= text_field_tag :bedrooms_search, params[:bedrooms_search] %> No. of bathrooms: <%= text_field_tag :bathrooms_search, params[:bathrooms_search] %>
+  </p>
+
+  <p>
+     Amenities: <!-- Still not working, to fix later -->
+     Essentials: <%= check_box_tag('amenities[]', value = 'Essentials', nil, {multiple: true}) %>
+     Wifi: <%= check_box_tag('amenities[]', value = 'Wifi', nil, {multiple: true}) %>
+     TV: <%= check_box_tag('amenities[]', value = 'TV', nil, {multiple: true}) %>
+     Heating: <%= check_box_tag('amenities[]', value = 'Heating', nil, {multiple: true}) %>
+  </p>
+
+  <%= submit_tag 'Filter Results', name: nil, :class => "btn btn-warning btn-lg text-dark" %>
 <% end %>
 </div>
 
 <br />
 
-<!-- <div id="results">
-</div> -->
+<div id="results">
+<!-- :'data-update-target' => 'results' -->
+</div>
 
-<h2>Check out recent listings!</h2>
+<h2 class="text-center">Check out recent listings!</h2>
 <br />
 
-<!-- The form -->
-<table>
-	<thead>
-		<tr>
-			<th>No.</th>
-			<th>Area</th>
-			<th>Description</th>
-			<th>Link</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
-    		<% x = 0 %>
-  		<% else %>
-     		<% page = params[:page].to_i - 1 %>
-    		<% x = page * 10 %>
-    	<% end %>
-
-		<% @listing = Listing.page(params[:page]).per(10) %>
-		<% @listing.order(:area).each_with_index do |list, index| %>
-		
-			<tr>
-				<td><%= index = x += 1 %></td>
-				<td><%= list.area %></td>
-				<td><%= list.description %></td>
-				<td><a href = 'listings/<%= list.id %>' >Find out more!</a></td>
-			</tr>
-		<% end %>
-
-	</tbody>
-</table>
-<%= paginate @listing, theme: 'twitter-bootstrap-4' %>
-
-
-<!-- <div class="jumbotron text-center p-1">
-<div id="carousel" class="carousel slide p-1" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://images.pexels.com/photos/271743/pexels-photo-271743.jpeg?auto=compress&cs=tinysrgb&h=350" width = 100% height = auto >
+<div class="row text-center">
+<% @listing = Listing.page(params[:page]).per(9) %>
+<% @listing.order(:area).each_with_index do |list, index| %>
+    <div class="col-sm-4">
+        <div class="card my-3">
+          <div class="card-header"><img style = "width:100%; height:auto;" src=<%= list.galleries[0] %> /></div>
+            <div class="card-body">
+              <p>Area: <%= list.area %> &bull; Price: <%= list.price %></p>
+              <p>Description: <%= list.description %></p>
+            </div>
+       <div class="card-footer bg-warning"><a href = 'listings/<%= list.id %>' >Find out more!</a></div>
+        </div>
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://images.pexels.com/photos/4217/hotel-bed-bedroom-room.jpg?auto=compress&cs=tinysrgb&h=350" width = 100% height = auto>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://images.pexels.com/photos/271643/pexels-photo-271643.jpeg?auto=compress&cs=tinysrgb&h=350" width = 100% height = auto>
-    </div>
-  </div>
+    <% end %>
 </div>
-</div> -->
+<%= paginate @listing, theme: 'twitter-bootstrap-4' %>
+<!-- The form -->
+<!-- <table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Area</th>
+      <th>Description</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+
+  <tbody> -->
+    <!-- <#% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+        <#% x = 0 %>
+      <#% else %>
+        <#% page = params[:page].to_i - 1 %>
+        <#% x = page * 10 %>
+      <#% end %>
+
+    
+    <#% @listing.order(:area).each_with_index do |list, index| %>
+    
+      <tr>
+        <td><#%= index = x += 1 %></td>
+        <td><#%= list.area %></td>
+        <td><#%= list.description %></td>
+        <td><a href = 'listings/<%= list.id %>' >Find out more!</a></td>
+      </tr>
+    <#% end %>
+
+  </tbody>
+</table> -->
